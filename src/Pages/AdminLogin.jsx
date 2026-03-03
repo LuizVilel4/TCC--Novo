@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff, ShieldCheck } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminLogin() {
   const [showPassword, setShowPassword] = useState(false);
-
+  const navigate = useNavigate();
   return (
     <main className="min-h-screen bg-[#f2f2f2] flex items-center justify-center p-6">
       <div className="relative w-full max-w-[520px]">
@@ -23,7 +24,13 @@ export default function AdminLogin() {
             </div>
           </div>
 
-          <form className="mt-6 flex flex-col gap-3">
+          <form
+            className="flex flex-col gap-3"
+            onSubmit={(e) => {
+              e.preventDefault();
+              navigate("/admin/dashboard");
+            }}
+          >
             <label className="text-sm text-[#808080]" htmlFor="adminEmail">
               E-mail
             </label>
